@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidate Dashboard | D-Portal</title>
+
+    <link rel="stylesheet" href="{% static 'css/c_dashboard.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<header>
+    <div class="accessibility-controls">
+        <button onclick="toggleContrast()">High Contrast</button>
+        <button onclick="increaseFont()">A+</button>
+        <button onclick="decreaseFont()">A-</button>
+    </div>
+</header>
+
+<div class="dashboard">
+
+<!-- Sidebar -->
+<aside class="sidebar">
+    <h2 class="logo">♿ SJP</h2>
+
+    <ul>
+        <li class="active">
+            <a href="{% url 'dashboard' %}">
+                <span>Dashboard</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="{% url 'profile' %}">
+                <span>My Profile</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="{% url 'explore_job' %}">
+                <span>Explore Jobs</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="{% url 'applied_job' %}">
+                <span>Applied Jobs</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="#">
+                <span>Settings</span>
+            </a>
+        </li>
+
+        <li class="logout">
+            <a href="{% url 'home' %}">
+                <span>Logout</span>
+            </a>
+        </li>
+
+    </ul>
+</aside>
+
+
+<!-- Main Content -->
+<main class="main">
+
+<!-- Topbar -->
+<div class="topbar">
+
+<div class="search-box">
+<form method="GET">
+    
+<input type="text" name="q" placeholder="Search jobs, skills...">
+</form>
+</div>
+
+<div class="top-icons">
+
+<div class="profile">
+<div class="profile">
+<img src="{{ profile.profile.url }}" alt="profile">
+<span>{{ request.user.first_name }}</span>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="profile-card">
+
+<h2>👤 Candidate Profile</h2>
+
+<div class="profile-details">
+{% if profile.profile %}
+<img src="{{ profile.profile.url }}" class="profile-img">
+{% else %}
+<img src="/static/images/default.png" class="profile-img">
+{% endif %}
+
+<div>
+<p><b>Name:</b> {{ request.user.first_name }}</p>
+<p><b>Email:</b> {{ request.user.email }}</p>
+<p><b>Phone:</b> {{ profile.phone }}</p>
+
+<p><b>Disability:</b> {{ profile.disability_type }} ({{ profile.disability_percentage }}%)</p>
+
+<p><b>Skills:</b> {{ profile.skills }}</p>
+<p><b>Education:</b> {{ profile.education }}</p>
+
+{% if profile.resume %}
+<a href="{{ profile.resume.url }}" target="_blank">
+<button class="btn">📄 Resume</button>
+</a>
+{% else %}
+<p>No resume uploaded</p>
+{% endif %}
+
+{% if profile.disability_doc %}
+<a href="{{ profile.disability_doc.url }}" target="_blank">
+<button class="btn danger">🧾 Certificate</button>
+</a>
+{% else %}
+<p style="color:red;">No certificate uploaded</p>
+{% endif %}
+</div>
+
+</div>
+
+</div>
+
+
+<!-- Welcome -->
+<div class="welcome">
+<h1>Welcome back, {{ request.user.first_name }} 👋</h1>
+<p>Here’s what’s happening with your job applications today.</p>
+</div>
+
+
+<!-- Stats -->
+<div class="stats">
+
+<div class="stat-card">
+<h3>Profile Completion</h3>
+
+<div class="progress-bar">
+<div class="progress" style="width: {{ profile_completion }}%"></div>
+</div>
+
+<p>{{ profile_completion }}%</p>
+</div>
+
+
+<div class="stat-card">
+<h3>Total Applications</h3>
+<p class="big">{{ total_applications }}</p>
+</div>
+
+
+<div class="stat-card">
+<h3>Shortlisted</h3>
+<p class="big success">{{ shortlisted }}</p>
+</div>
+
+</div>
+
+
+
+<!-- Recommended Jobs -->
+<section class="jobs">
+
+<h2>🎯 Recommended For You</h2>
+
+{% for job in jobs %}
+
+<div class="job-card">
+
+<div>
+<h3>{{ job.title }}</h3>
+<p>{{ job.company }}</p>
+
+<span class="match">
+Skill Match: {{ job.match }}%
+</span>
+
+</div>
+
+<a href="{% url 'job_detail' job.id %}">
+<button>View Details</button>
+</a>
+
+</div>
+
+{% empty %}
+
+<p>No recommended jobs available.</p>
+
+{% endfor %}
+
+
+<!-- candidate_dashboard.html -->
+<!-- Selected Jobs -->
+<h2>Selected Jobs ✅</h2>
+{% if selected_jobs %}
+    <ul>
+    {% for app in selected_jobs %}
+        <li class="selected">{{ app.job.title }} - Selected 🎉</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>You are not selected for any job yet.</p>
+{% endif %}
+
+<h2>Rejected Jobs ❌</h2>
+{% if rejected_jobs %}
+    <ul>
+    {% for app in rejected_jobs %}
+        <li class="rejected">{{ app.job.title }} - Rejected ❌</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No rejected jobs yet.</p>
+{% endif %}
+
+<h2>Pending Applications ⏳</h2>
+{% if applied_jobs %}
+    <ul>
+    {% for app in applied_jobs %}
+        <li class="pending">{{ app.job.title }} - Pending</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No pending applications.</p>
+{% endif %}
+</section>
+
+</main>
+
+</div>
+
+
+<script>
+
+function toggleContrast() {
+document.body.classList.toggle("high-contrast");
+}
+
+let currentFontSize = 16;
+
+function increaseFont() {
+currentFontSize += 2;
+document.body.style.fontSize = currentFontSize + "px";
+}
+
+function decreaseFont() {
+if (currentFontSize > 12) {
+currentFontSize -= 2;
+document.body.style.fontSize = currentFontSize + "px";
+}
+}
+
+</script>
+
+</body>
+</html>

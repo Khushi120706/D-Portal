@@ -1,0 +1,212 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Body */
+body {
+    background: linear-gradient(135deg, #4f46e5, #6d28d9);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 8%;
+    background: white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+nav a {
+    text-decoration: none;
+    margin-right: 20px;
+    color: #4f46e5;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #6d28d9;
+}
+
+/* Accessibility Buttons */
+.accessibility-controls button {
+    margin-left: 10px;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    background: #4f46e5;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.accessibility-controls button:hover {
+    background: #6d28d9;
+}
+
+/* Container */
+.container {
+    background: white;
+    width: 500px;
+    max-width: 95%;
+    margin: auto;
+    margin-top: 60px;
+    padding: 35px;
+    border-radius: 15px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+.container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #4f46e5;
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #eee;
+}
+
+.tab {
+    padding: 10px 25px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #666;
+    transition: 0.3s;
+}
+
+.tab.active {
+    color: #4f46e5;
+    border-bottom: 3px solid #4f46e5;
+}
+
+.tab:hover {
+    color: #6d28d9;
+}
+
+/* Forms */
+form {
+    display: none;
+}
+
+form.active {
+    display: block;
+}
+
+/* Labels */
+form label {
+    display: block;
+    margin-bottom: 6px;
+    margin-top: 12px;
+    font-weight: 500;
+}
+
+/* Inputs */
+form input,
+form select,
+form textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-bottom: 8px;
+    transition: 0.3s;
+    font-size: 14px;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+    border-color: #4f46e5;
+    outline: none;
+    box-shadow: 0 0 5px rgba(79,70,229,0.3);
+}
+
+/* File Input Styling */
+input[type="file"] {
+    padding: 6px;
+    background: #f4f4f4;
+}
+
+/* Button */
+form button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 8px;
+    background: #4f46e5;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+form button:hover {
+    background: #6d28d9;
+}
+
+/* High Contrast Mode */
+.high-contrast {
+    background: black !important;
+    color: yellow !important;
+}
+
+.high-contrast .container {
+    background: black;
+    border: 2px solid yellow;
+}
+
+.high-contrast input,
+.high-contrast select,
+.high-contrast textarea {
+    background: black;
+    color: yellow;
+    border: 1px solid yellow;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .container {
+        padding: 25px;
+    }
+
+    header {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .tabs {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .tab {
+        margin-bottom: 5px;
+    }
+}

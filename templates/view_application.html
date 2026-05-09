@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>View Applications</title>
+
+<link rel="stylesheet" href="{% static 'css/view_application.css' %}">
+
+</head>
+
+<body>
+
+<header>
+<button class="bTn">
+<a href="{% url 'employer' %}">Dashboard</a>
+</button>
+</header>
+
+<h2>Applications Received</h2>
+
+<table>
+
+<tr>
+<th>Candidate Name</th>
+<th>Disability %</th>
+<th>Resume</th>
+<th>Verification</th>  <!-- ✅ NEW COLUMN -->
+<th>Status</th>
+<th>Action</th>
+</tr>
+
+{% for app in applications %}
+
+<tr>
+
+<td>{{ app.user.username }}</td>
+
+<td>{{ app.disability_percentage }}%</td>
+
+<!-- Resume -->
+<td>
+<a href="{{ app.resume.url }}" target="_blank">
+<button>View</button>
+</a>
+</td>
+
+<!-- ✅ Verification Proof -->
+<td>
+    {% if app.verification_image %}
+        <a href="{{ app.verification_image.url }}" target="_blank">
+            <button>View Proof</button>
+        </a>
+    {% else %}
+        <span style="color: gray;">Not Verified</span>
+    {% endif %}
+</td>
+
+<!-- Status -->
+<td>
+    <span class="status {{ app.status|lower }}">
+        {{ app.status }}
+    </span>
+</td>
+
+<!-- Action -->
+<td>
+<form method="POST" action="{% url 'update_application' app.id %}">
+{% csrf_token %}
+
+<button class="accept" name="action" value="accept">Accept</button>
+<button class="reject" name="action" value="reject">Reject</button>
+
+</form>
+</td>
+
+</tr>
+
+{% empty %}
+
+<tr>
+<td colspan="6">No Applications Found</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+</body>
+</html>

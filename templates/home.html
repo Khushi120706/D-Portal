@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>D-Portal</title>
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">♿ D-Portal</div>
+
+<nav class="nav-links">
+
+<a href="{% url 'home' %}">Home</a>
+<a href="{% url 'govt_job' %}">Government Jobs</a>
+<a href="{% url 'private_job' %}">Private Jobs</a>
+<a href="{% url 'explore_job' %}">Explore Jobs</a>
+
+{% if user.is_authenticated %}
+<a href="{% url 'dashboard' %}">Dashboard</a>
+<a href="{% url 'logout' %}">Logout</a>
+{% else %}
+<a href="{% url 'login' %}">Login</a>
+<a href="{% url 'register' %}">Register</a>
+{% endif %}
+
+</nav>
+
+<div class="menu-container">
+<div class="hamburger" onclick="toggleDropdown()">☰</div>
+
+<div class="dropdown-menu" id="dropdownMenu">
+<a href="{% url 'about' %}">About Us</a>
+<a href="{% url 'contact' %}">Contact Us</a>
+
+<div class="accessibility-controls">
+<button onclick="toggleContrast()">High Contrast</button>
+<button onclick="increaseFont()">A+</button>
+<button onclick="decreaseFont()">A-</button>
+</div>
+
+</div>
+</div>
+
+</header>
+
+<!-- Hero Section -->
+<section class="hero">
+
+<h1>Empowering Abilities Through Equal Opportunities</h1>
+
+<p>
+Accessible Job Portal specially designed for candidates with mild disabilities (up to 50%) to find suitable opportunities.
+</p>
+
+<a href="{% url 'explore_job' %}">
+<button class="btn-primary">Explore Jobs</button>
+</a>
+
+<a href="{% url 'register' %}">
+<button class="btn-secondary">Register Now</button>
+</a>
+
+</section>
+
+<!-- Job Categories -->
+<section class="job-section">
+
+<h2 class="section-title">Browse Job Categories</h2>
+
+<div class="cards">
+
+<div class="card gov">
+<h3>🏛 Government Jobs</h3>
+<p>Find government opportunities with PWD reservation benefits.</p>
+
+<a href="{% url 'govt_job' %}">
+<button class="JBTN">View Jobs</button>
+</a>
+</div>
+
+<div class="card private">
+<h3>🏢 Private Jobs</h3>
+<p>Explore inclusive private sector jobs with remote options.</p>
+
+<a href="{% url 'private_job' %}">
+<button class="JBTN">View Jobs</button>
+</a>
+</div>
+
+</div>
+
+</section>
+
+<!-- Latest Jobs -->
+<section class="job-section">
+
+<h2 class="section-title">Latest Jobs</h2>
+
+<div class="cards">
+
+{% for job in jobs %}
+
+<div class="card">
+
+<h3>{{ job.title }}</h3>
+<p><strong>Location:</strong> {{ job.location }}</p>
+<p><strong>Type:</strong> {{ job.job_type }}</p>
+
+{% if job.disability_type %}
+<p><strong>Disability Support:</strong> {{ job.disability_type }}</p>
+{% endif %}
+
+<a href="{% url 'job_detail' job.id %}">
+<button>View Details</button>
+</a>
+
+{% if user.is_authenticated %}
+<a href="{% url 'apply_job' job.id %}">
+<button class="apply-btn">Apply Now</button>
+</a>
+{% else %}
+<a href="{% url 'login' %}">
+<button class="apply-btn">Login to Apply</button>
+</a>
+{% endif %}
+
+</div>
+
+{% empty %}
+<p>No jobs available right now. Please check later 😊</p>
+{% endfor %}
+
+</div>
+
+</section>
+
+<!-- Features -->
+<section class="features">
+
+<h2 class="section-title">Why Choose Our Portal?</h2>
+
+<div class="feature-grid">
+
+<div class="feature">
+<h4>🎯 Smart Matching</h4>
+<p>Jobs recommended based on disability type & percentage.</p>
+</div>
+
+<div class="feature">
+<h4>📊 Reservation Eligibility</h4>
+<p>Check eligibility for government jobs under PWD quota.</p>
+</div>
+
+<div class="feature">
+<h4>♿ Accessibility First</h4>
+<p>High contrast mode and adjustable font size.</p>
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+<h3>D-Portal</h3>
+<p>Building Inclusive Careers | © 2026 All Rights Reserved</p>
+
+</footer>
+
+<script>
+
+function toggleDropdown(){
+let menu=document.getElementById("dropdownMenu");
+menu.style.display = menu.style.display === "block" ? "none" : "block";
+}
+
+function toggleContrast(){
+document.body.classList.toggle("high-contrast");
+}
+
+let currentFontSize=16;
+
+function increaseFont(){
+currentFontSize+=2;
+document.body.style.fontSize=currentFontSize+"px";
+}
+
+function decreaseFont(){
+if(currentFontSize>12){
+currentFontSize-=2;
+document.body.style.fontSize=currentFontSize+"px";
+}
+}
+
+</script>
+
+</body>
+</html>

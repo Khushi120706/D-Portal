@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Private Jobs | D-Portal</title>
+
+<link rel="stylesheet" href="{% static 'css/p_job_page.css' %}">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">♿ D-Portal</div>
+
+<nav>
+
+<a href="{% url 'home' %}">Home</a>
+
+<a href="{% url 'govt_job' %}">Government Jobs</a>
+
+<a href="{% url 'explore_job' %}">Explore Jobs</a>
+
+<a href="{% url 'login' %}">Login</a>
+
+<a href="{% url 'register' %}">Register</a>
+
+</nav>
+
+<div class="accessibility-controls">
+<button onclick="toggleContrast()">High Contrast</button>
+<button onclick="increaseFont()">A+</button>
+<button onclick="decreaseFont()">A-</button>
+</div>
+
+</header>
+
+
+
+<section class="page-title">
+
+<h1>🏢 Private Sector Jobs</h1>
+
+<p>Inclusive companies offering accessible and remote opportunities.</p>
+
+</section>
+
+
+
+<div class="container">
+
+
+<!-- Filters -->
+
+<form method="GET">
+
+<div class="filters">
+
+<h3>Search & Filters</h3>
+
+<label>Search</label>
+<input type="text" name="q" placeholder="Search job title">
+
+
+<label>Skills</label>
+<select name="skills">
+
+<option value="">All Skills</option>
+<option value="Python">Python</option>
+<option value="Data Entry">Data Entry</option>
+<option value="Web Development">Web Development</option>
+<option value="Communication">Communication</option>
+
+</select>
+
+
+<label>Location</label>
+<select name="location">
+
+<option value="">All Locations</option>
+<option value="Bhopal">Bhopal</option>
+<option value="Delhi">Delhi</option>
+<option value="Remote">Remote</option>
+
+</select>
+
+
+<label>Remote Option</label>
+<select name="remote">
+
+<option value="">All</option>
+<option value="Remote">Remote</option>
+<option value="Onsite">On-Site</option>
+<option value="Hybrid">Hybrid</option>
+
+</select>
+
+
+<label>Experience Level</label>
+<select name="experience">
+
+<option value="">All</option>
+<option value="Fresher">Fresher</option>
+<option value="1-3 Years">1-3 Years</option>
+<option value="3+ Years">3+ Years</option>
+
+</select>
+
+<button type="submit">Apply Filters</button>
+
+</div>
+
+</form>
+
+
+
+<!-- Job Cards -->
+
+<div class="jobs">
+
+{% for job in jobs %}
+
+<div class="job-card">
+
+<div class="badge">
+    {{ job.remote_type|default:"Private" }}
+</div>
+
+<h3>{{ job.title }}</h3>
+
+<div class="job-meta">
+Company: {{ job.department }}
+</div>
+
+<div class="job-meta">
+Location: {{ job.location }}
+</div>
+
+<div class="job-meta">
+Skills: {{ job.skills }}
+</div>
+
+<a href="{% url 'job_detail' job.id %}">
+<button class="apply-btn">View Details</button>
+</a>
+
+</div>
+
+{% empty %}
+
+<p>No private jobs available.</p>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+
+
+<script>
+
+function toggleContrast(){
+document.body.classList.toggle("high-contrast");
+}
+
+let currentFontSize=16;
+
+function increaseFont(){
+currentFontSize+=2;
+document.body.style.fontSize=currentFontSize+"px";
+}
+
+function decreaseFont(){
+if(currentFontSize>12){
+currentFontSize-=2;
+document.body.style.fontSize=currentFontSize+"px";
+}
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Us | D-Portal</title>
+    <link rel="stylesheet" href="{% static "css/contact.css" %}">
+</head>
+
+<body>
+
+    <header>
+        <h2>♿ D-Portal</h2>
+        <nav>
+            <a href="{% url "home" %}">HOME</a>
+            <a href="{% url "about" %}">About Us</a>
+        </nav>
+        <div class="accessibility-controls">
+            <button onclick="toggleContrast()">High Contrast</button>
+            <button onclick="increaseFont()">A+</button>
+            <button onclick="decreaseFont()">A-</button>
+        </div>
+    </header>
+
+    <section class="contact-container">
+        <h1>Contact Us</h1>
+        <p>Have questions or need support? Reach out to us.</p>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            {% if success %}
+            <p style="color:green;">{{ success }}</p>
+            {% endif %}
+
+            <label>Full Name</label>
+            <input type="text" name="name" placeholder="Enter your name" required>
+
+            <label>Email</label>
+            <input type="email" name="email" placeholder="Enter your email" required>
+
+            <label>Message</label>
+            <textarea name="message" rows="5" placeholder="Write your message here..." required></textarea>
+
+            <button type="submit">Send Message</button>
+        </form>
+
+        <div class="contact-info">
+            <p><strong>Email:</strong> aadrashmehto2209@gmail.com</p>
+            <p><strong>Phone:</strong> +91 6269564108</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 D-Portal | Inclusive Careers for Disable candidates.</p>
+    </footer>
+
+    <script>
+        function toggleContrast() {
+            document.body.classList.toggle("high-contrast");
+        }
+
+        let currentFontSize = 16;
+
+        function increaseFont() {
+            currentFontSize += 2;
+            document.body.style.fontSize = currentFontSize + "px";
+        }
+
+        function decreaseFont() {
+            if (currentFontSize > 12) {
+                currentFontSize -= 2;
+                document.body.style.fontSize = currentFontSize + "px";
+            }
+        }
+    </script>
+
+</body>
+
+</html>

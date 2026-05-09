@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Government Jobs | D-Portal</title>
+
+<link rel="stylesheet" href="{% static 'css/govt_job_page.css' %}">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">♿ Smart Job Portal</div>
+
+<nav>
+<a href="{% url 'home' %}">Home</a>
+<a href="{% url 'private_job' %}">Private</a>
+<a href="{% url 'explore_job' %}">Explore Jobs</a>
+<a href="{% url 'login' %}">Login</a>
+</nav>
+
+<div class="accessibility-controls">
+<button onclick="toggleContrast()">High Contrast</button>
+<button onclick="increaseFont()">A+</button>
+<button onclick="decreaseFont()">A-</button>
+</div>
+
+</header>
+
+
+
+<section class="page-title">
+
+<h1>🏛 Government Jobs with PWD Reservation</h1>
+
+<div class="info-box">
+PWD Reservation applicable for candidates with ≥ 40% benchmark disability.
+</div>
+
+</section>
+
+
+
+<div class="container">
+
+
+<!-- Filters -->
+<form method="GET">
+
+<div class="filters">
+
+<h3>Search & Filters</h3>
+
+<label>Search</label>
+<input type="text" name="q" placeholder="Search job title">
+
+
+<label>Department</label>
+<select name="department">
+
+<option value="">All Departments</option>
+<option value="Education">Education</option>
+<option value="Railways">Railways</option>
+<option value="Banking">Banking</option>
+
+</select>
+
+
+<label>Location</label>
+<select name="location">
+
+<option value="">All Locations</option>
+<option value="Bhopal">Bhopal</option>
+<option value="Delhi">Delhi</option>
+<option value="Mumbai">Mumbai</option>
+
+</select>
+
+
+<label>Disability Type</label>
+<select name="disability">
+
+<option value="">All</option>
+<option value="Locomotor">Locomotor</option>
+<option value="Visual">Visual</option>
+<option value="Hearing">Hearing</option>
+
+</select>
+
+
+<label>Disability %</label>
+<input type="number" name="percentage" placeholder="Enter percentage">
+
+
+<label>Reservation Eligible</label>
+<select name="reservation">
+
+<option value="">All</option>
+<option value="Yes">Yes</option>
+<option value="No">No</option>
+
+</select>
+
+
+<button type="submit">Apply Filters</button>
+
+</div>
+
+</form>
+
+
+
+<!-- Job Cards -->
+
+<div class="jobs">
+
+{% for job in jobs %}
+
+<div class="job-card">
+
+{% if job.reservation %}
+<div class="badge">PWD Reserved</div>
+{% endif %}
+
+<h3>{{ job.title }}</h3>
+
+<div class="job-meta">
+Department: {{ job.department }} | Location: {{ job.location }}
+</div>
+
+<div class="job-meta">
+Eligible: {{ job.disability_type }} | Min Disability: {{ job.disability_percent }}%
+</div>
+
+<a href="{% url 'job_detail' job.id %}">
+<button class="apply-btn">View Details</button>
+</a>
+
+</div>
+
+{% empty %}
+
+<p>No government jobs available.</p>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+
+
+<script>
+
+function toggleContrast() {
+document.body.classList.toggle("high-contrast");
+}
+
+let currentFontSize = 16;
+
+function increaseFont() {
+currentFontSize += 2;
+document.body.style.fontSize = currentFontSize + "px";
+}
+
+function decreaseFont() {
+if (currentFontSize > 12) {
+currentFontSize -= 2;
+document.body.style.fontSize = currentFontSize + "px";
+}
+}
+
+</script>
+
+</body>
+</html>

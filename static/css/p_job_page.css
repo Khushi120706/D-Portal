@@ -1,0 +1,224 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #f4f7fc;
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.5;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 8%;
+    background: white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    flex-wrap: wrap;
+}
+
+.logo {
+    font-weight: 700;
+    font-size: 20px;
+    color: #4f46e5;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+nav a {
+    text-decoration: none;
+    margin: 5px 10px;
+    color: #4f46e5;
+    font-weight: 600;
+}
+
+nav a:hover {
+    color: #6d28d9;
+}
+
+/* Accessibility Buttons */
+.accessibility-controls {
+    display: flex;
+    gap: 5px;
+}
+
+.accessibility-controls button {
+    padding: 6px 10px;
+    border: none;
+    border-radius: 6px;
+    background: #4f46e5;
+    color: white;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.accessibility-controls button:hover {
+    background: #6d28d9;
+}
+
+/* Page Title */
+.page-title {
+    text-align: center;
+    padding: 40px 20px 20px;
+}
+
+.page-title h1 {
+    color: #4f46e5;
+    margin-bottom: 8px;
+}
+
+/* Layout */
+.container {
+    display: flex;
+    gap: 25px;
+    width: 90%;
+    margin: 30px auto;
+}
+
+/* Filters */
+.filters {
+    flex: 1;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.filters h3 {
+    margin-bottom: 10px;
+    color: #4f46e5;
+}
+
+.filters label {
+    margin-top: 10px;
+    font-size: 14px;
+    display: block;
+}
+
+.filters input,
+.filters select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.filters button {
+    width: 100%;
+    margin-top: 15px;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #4f46e5;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.filters button:hover {
+    background: #6d28d9;
+}
+
+/* Job Cards */
+.jobs {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.job-card {
+    background: white;
+    padding: 18px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    position: relative;
+    transition: 0.3s;
+}
+
+.job-card:hover {
+    transform: translateY(-3px);
+}
+
+.job-card h3 {
+    color: #4f46e5;
+    margin-bottom: 6px;
+}
+
+.job-meta {
+    font-size: 13px;
+    color: #555;
+}
+
+/* Badge */
+.badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+
+    display: inline-block;   /* IMPORTANT */
+    padding: 6px 14px;
+
+    font-size: 12px;
+    font-weight: 600;
+    color: white;
+
+    background: #6366f1;  /* purple */
+    border-radius: 20px;
+
+    white-space: nowrap;   /* text wrap na ho */
+}
+
+/* Button */
+.apply-btn {
+    margin-top: 10px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    background: #4f46e5;
+    color: white;
+    cursor: pointer;
+}
+
+.apply-btn:hover {
+    background: #6d28d9;
+}
+
+/* ✅ FIXED HIGH CONTRAST */
+.high-contrast {
+    background: black !important;
+    color: white !important;
+}
+
+.high-contrast * {
+    color: white !important;
+    border-color: white !important;
+}
+
+.high-contrast .job-card,
+.high-contrast .filters,
+.high-contrast header {
+    background: black !important;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .container {
+        flex-direction: column;
+    }
+
+    header {
+        flex-direction: column;
+        gap: 10px;
+    }
+}

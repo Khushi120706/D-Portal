@@ -1,0 +1,90 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Body */
+body {
+    background: linear-gradient(135deg, #e3f2fd, #ffffff);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+/* Heading */
+h2 {
+    color: #0d47a1;
+    margin-bottom: 20px;
+    font-size: 26px;
+}
+
+/* Video */
+video {
+    width: 320px;
+    max-width: 90%;
+    border-radius: 12px;
+    border: 3px solid #1976d2;
+    box-shadow: 0 6px 15px rgba(0, 102, 255, 0.2);
+    margin-bottom: 15px;
+}
+
+/* Buttons */
+button {
+    width: 320px;
+    max-width: 90%;
+    padding: 12px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Capture Button */
+button:first-of-type {
+    background: #42a5f5;
+    color: white;
+}
+
+button:first-of-type:hover {
+    background: #1e88e5;
+    transform: scale(1.03);
+}
+
+/* Submit Button */
+form button {
+    background: #0d47a1;
+    color: white;
+}
+
+form button:hover {
+    background: #002171;
+    transform: scale(1.03);
+}
+
+/* Form spacing */
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Mobile Responsive */
+@media (max-width: 480px) {
+    h2 {
+        font-size: 20px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 10px;
+    }
+}  

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+<title>Explore Jobs</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="{% static 'css/exploar_job.css' %}">
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">♿ D-Portal</div>
+
+<nav>
+
+<a href="{% url 'home' %}">Home</a>
+
+<a href="{% url 'govt_job' %}">Government Jobs</a>
+
+<a href="{% url 'private_job' %}">Private Jobs</a>
+
+<a href="{% url 'login' %}">Login</a>
+
+<a href="{% url 'register' %}">Register</a>
+
+</nav>
+
+<div class="accessibility-controls">
+<button onclick="toggleContrast()">High Contrast</button>
+<button onclick="increaseFont()">A+</button>
+<button onclick="decreaseFont()">A-</button>
+</div>
+
+</header>
+
+
+<h1>🔎 Explore Jobs</h1>
+
+
+<!-- Search Filter -->
+<form method="GET">
+
+<div class="top-bar">
+
+<input type="text" name="q" placeholder="Search job title">
+
+<select name="type">
+
+<option value="">All Types</option>
+<option value="Government">Government</option>
+<option value="Private">Private</option>
+
+</select>
+
+
+<select name="disability">
+
+<option value="">Disability Type</option>
+<option value="Locomotor">Locomotor</option>
+<option value="Visual">Visual</option>
+<option value="Hearing">Hearing</option>
+
+</select>
+
+
+<select name="location">
+
+<option value="">Location</option>
+<option value="Bhopal">Bhopal</option>
+<option value="Indore">Indore</option>
+<option value="Remote">Remote</option>
+
+</select>
+
+
+<button type="submit">Search</button>
+
+</div>
+
+</form>
+
+
+
+<!-- Job Cards -->
+<div class="jobs">
+
+{% for job in jobs %}
+
+<div class="card">
+
+<span class="badge {{ job.job_type|lower }}">
+{{ job.job_type }}
+</span>
+
+
+{% if job.reservation %}
+<span class="badge reserved">
+Reservation
+</span>
+{% endif %}
+
+
+<h3>{{ job.title }}</h3>
+
+<p>Location: {{ job.location }}</p>
+
+<p>
+Disability Required:
+{{ job.disability_requirement }}
+</p>
+
+<a href="{% url 'job_detail' job.id %}">
+<button class="apply-btn">View Details</button>
+</a>
+
+</div>
+
+{% empty %}
+
+<p>No jobs found.</p>
+
+{% endfor %}
+
+</div>
+
+
+
+<script>
+
+function toggleContrast() {
+document.body.classList.toggle("high-contrast");
+}
+
+let currentFontSize = 16;
+
+function increaseFont() {
+currentFontSize += 2;
+document.body.style.fontSize = currentFontSize + "px";
+}
+
+function decreaseFont() {
+if (currentFontSize > 12) {
+currentFontSize -= 2;
+document.body.style.fontSize = currentFontSize + "px";
+}
+}
+
+</script>
+
+</body>
+</html>

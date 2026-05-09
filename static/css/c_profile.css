@@ -1,0 +1,134 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f5f9ff;
+}
+
+/* HEADER */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: white;
+    border-bottom: 1px solid #e0e7ff;
+}
+
+header a {
+    text-decoration: none;
+    color: #0d6efd;
+    font-weight: 600;
+}
+
+/* ACCESSIBILITY */
+.accessibility-controls button {
+    margin-left: 5px;
+    padding: 6px 10px;
+    border-radius: 20px;
+    border: 1px solid #0d6efd;
+    background: #e7f0ff;
+    color: #0d6efd;
+    cursor: pointer;
+}
+
+/* CONTAINER */
+.container {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+/* CARD */
+.profile-card {
+    width: 650px;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+/* PROFILE TOP */
+.profile-top {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.profile-img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 3px solid #0d6efd;
+    object-fit: cover;
+}
+
+/* FORM */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group.full {
+    grid-column: span 2;
+}
+
+label {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+input, textarea {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+textarea {
+    resize: none;
+}
+
+/* BUTTON */
+.update-btn {
+    margin-top: 20px;
+    padding: 12px;
+    width: 100%;
+    background: #0d6efd;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.update-btn:hover {
+    background: #084298;
+}
+
+/* ACCESSIBILITY MODE */
+.high-contrast {
+    background: black !important;
+    color: rgb(80, 20, 219) !important;
+    font-weight: 600;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .profile-card {
+        width: 90%;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+}

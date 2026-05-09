@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/applied_job.css' %}">
+    <title>Applied Jobs</title>
+</head>
+
+<body>
+
+<header>
+    <nav>
+        <a href="{% url 'dashboard' %}">Dashboard</a>
+    </nav>
+
+    <div class="accessibility-controls">
+        <button onclick="toggleContrast()">High Contrast</button>
+        <button onclick="increaseFont()">A+</button>
+        <button onclick="decreaseFont()">A-</button>
+    </div>
+</header>
+
+<h2>My Applied Jobs</h2>
+
+{% for app in applications %}
+<div class="card">
+    <h3>{{ app.job.title }}</h3>
+    <p>Location: {{ app.job.location }}</p>
+
+    <span class="status {{ app.status|lower }}">
+        {{ app.status }}
+    </span>
+
+    {% if not app.is_verified %}
+        <a href="{% url 'verify_candidate' app.id %}">
+            <button>🎥 Verify Now</button>
+        </a>
+    {% else %}
+        <span style="color:green;">✔ Verified</span>
+    {% endif %}
+</div>
+{% empty %}
+<p>No jobs applied yet.</p>
+{% endfor %}
+<script>
+
+function toggleContrast() {
+    document.body.classList.toggle("high-contrast");
+}
+
+let currentFontSize = 16;
+
+function increaseFont() {
+    currentFontSize += 2;
+    document.body.style.fontSize = currentFontSize + "px";
+}
+
+function decreaseFont() {
+    if (currentFontSize > 12) {
+        currentFontSize -= 2;
+        document.body.style.fontSize = currentFontSize + "px";
+    }
+}
+
+</script>
+
+</body>
+</html>

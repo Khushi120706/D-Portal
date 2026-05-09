@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>Company Profile</title>
+
+<link rel="stylesheet" href="{% static 'css/company_p.css' %}">
+</head>
+
+<body>
+
+<div class="container">
+    <div class="card">
+
+        <h2>Company Profile</h2>
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {% if form.errors %}
+            <div class="error-box">
+                {{ form.errors }}
+            </div>
+            {% endif %}
+
+            <label>Company Name</label>
+            {{ form.company_name }}
+
+            <label>HR Name</label>
+            {{ form.hr_name }}
+
+            <label>Email</label>
+            {{ form.email }}
+
+            <label>Phone</label>
+            {{ form.phone }}
+
+            <label>Website</label>
+            {{ form.website }}
+
+            <label>Address</label>
+            {{ form.address }}
+
+            <label>Description</label>
+            {{ form.description }}
+
+            <label>Logo</label>
+            {{ form.logo }}
+
+            <button type="submit">Save</button>
+        </form>
+
+    </div>
+</div>
+
+</body>
+</html>

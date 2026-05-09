@@ -1,0 +1,189 @@
+/* ========== GLOBAL ========== */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins', sans-serif;
+}
+
+body{
+    background:#f4f7fc;
+    padding:40px 8%;
+    color:#333;
+}
+
+/* Header */
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+    position: relative;
+}
+
+.bTn{
+    position: absolute;
+    right: 50px;
+    padding:8px 16px;
+    background:#4A6CF7;
+    color:white;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.bTn a{
+    text-decoration: none;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.btn  a {
+    text-decoration: none;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+/* ========== HEADING ========== */
+h2{
+    margin-bottom:25px;
+    font-size:26px;
+    color:#4A6CF7;
+}
+
+/* ========== TABLE CONTAINER ========== */
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 8px 20px rgba(0,0,0,0.05);
+}
+
+/* ========== TABLE HEADER ========== */
+th{
+    background:#4A6CF7;
+    color:white;
+    padding:15px;
+    text-align:left;
+    font-weight:600;
+    font-size:14px;
+}
+
+/* ========== TABLE DATA ========== */
+td{
+    padding:15px;
+    border-bottom:1px solid #eee;
+    font-size:14px;
+}
+
+tr:last-child td{
+    border-bottom:none;
+}
+
+/* ========== ROW HOVER EFFECT ========== */
+tr:hover{
+    background:#f1f5ff;
+    transition:0.3s;
+}
+
+/* ========== BUTTON COMMON STYLE ========== */
+button{
+    padding:6px 12px;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:13px;
+    transition:0.3s;
+}
+
+/* Resume View Button */
+td button{
+    background:#6c757d;
+    color:white;
+}
+
+td button:hover{
+    background:#555;
+}
+
+/* ========== ACCEPT BUTTON ========== */
+.accept{
+    background:#28a745;
+    color:white;
+}
+
+.accept:hover{
+    background:#1e7e34;
+}
+
+/* ========== REJECT BUTTON ========== */
+.reject{
+    background:#dc3545;
+    color:white;
+}
+
+.reject:hover{
+    background:#a71d2a;
+}
+
+.status {
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    color: white;
+}
+
+.status.pending {
+    background: orange;
+}
+
+.status.verified {
+    background: blue;
+}
+
+.status.accepted {
+    background: green;
+}
+
+.status.rejected {
+    background: red;
+}
+/* ========== RESPONSIVE TABLE ========== */
+@media(max-width:768px){
+
+    table, thead, tbody, th, td, tr{
+        display:block;
+        width:100%;
+    }
+
+    thead{
+        display:none;
+    }
+
+    tr{
+        margin-bottom:20px;
+        background:white;
+        padding:15px;
+        border-radius:10px;
+        box-shadow:0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    td{
+        border:none;
+        padding:8px 0;
+        display:flex;
+        justify-content:space-between;
+        font-size:13px;
+    }
+
+    td::before{
+        content:attr(data-label);
+        font-weight:600;
+        color:#555;
+    }
+
+}

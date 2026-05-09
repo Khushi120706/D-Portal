@@ -1,0 +1,145 @@
+/* ================= RESET ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f4f7fb;
+    padding-bottom: 40px;
+    transition: 0.3s ease;
+}
+
+/* ================= HEADER ================= */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background: #1e293b;
+    color: white;
+}
+
+header nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.08);
+    transition: 0.3s;
+}
+
+header nav a:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+/* ================= ACCESSIBILITY ================= */
+.accessibility-controls button {
+    padding: 6px 12px;
+    margin-left: 6px;
+    border: none;
+    border-radius: 6px;
+    background: #2563eb;
+    color: white;
+    cursor: pointer;
+    font-size: 13px;
+    transition: 0.3s;
+}
+
+.accessibility-controls button:hover {
+    background: #1d4ed8;
+}
+
+/* High Contrast Mode */
+.high-contrast {
+    background: #000 !important;
+    color: #fff !important;
+}
+
+.high-contrast header {
+    background: #000;
+}
+
+.high-contrast .card {
+    background: #111;
+    color: #fff;
+}
+
+.high-contrast .status.pending {
+    background: orange;
+    color: black;
+}
+
+.high-contrast .status.selected {
+    background: limegreen;
+    color: black;
+}
+
+/* ================= TITLE ================= */
+h2 {
+    text-align: center;
+    margin: 30px 0;
+    font-weight: 600;
+}
+
+/* ================= CARDS ================= */
+.card {
+    background: white;
+    width: 90%;
+    max-width: 600px;
+    margin: 15px auto;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    transition: 0.3s;
+    position: relative;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+}
+
+.card h3 {
+    margin-bottom: 8px;
+}
+
+.card p {
+    color: #555;
+    margin-bottom: 10px;
+}
+
+/* ================= STATUS BADGES ================= */
+.status {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* Pending */
+.status.pending {
+    background: #facc15;
+    color: #333;
+}
+
+/* Selected */
+.status.selected {
+    background: #16a34a;
+    color: white;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .card {
+        padding: 16px;
+    }
+}

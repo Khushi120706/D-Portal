@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Profile | Smart Job Portal</title>
+
+<link rel="stylesheet" href="{% static 'css/c_profile.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<header>
+<nav>
+<a href="{% url 'dashboard' %}">← Back to Dashboard</a>
+</nav>
+
+<div class="accessibility-controls">
+<button onclick="toggleContrast()">🌙 Contrast</button>
+<button onclick="increaseFont()">A+</button>
+<button onclick="decreaseFont()">A-</button>
+</div>
+</header>
+
+<div class="container">
+
+<div class="profile-card">
+
+<h2>👤 My Profile</h2>
+
+<!-- Profile Top -->
+<div class="profile-top">
+    {% if profile.profile %}
+    <img src="{{ profile.profile.url }}" class="profile-img">
+    {% else %}
+    <img src="{% static 'images/default.png' %}" class="profile-img">
+    {% endif %}
+
+    <div>
+        <h3>{{ request.user.first_name }}</h3>
+        <p>{{ request.user.email }}</p>
+    </div>
+</div>
+
+<!-- FORM -->
+<form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+
+<div class="form-grid">
+
+<div class="form-group">
+<label>Full Name</label>
+<input type="text" name="name" value="{{ request.user.first_name }}">
+</div>
+
+<div class="form-group">
+<label>Email</label>
+<input type="email" name="email" value="{{ request.user.email }}">
+</div>
+
+<div class="form-group">
+<label>Phone</label>
+<input type="text" name="phone" value="{{ profile.phone }}">
+</div>
+
+<div class="form-group">
+<label>Disability Type</label>
+<input type="text" name="disability_type" value="{{ profile.disability_type }}">
+</div>
+
+<div class="form-group">
+<label>Disability %</label>
+<input type="number" name="disability_percentage" value="{{ profile.disability_percentage }}">
+</div>
+
+<div class="form-group full">
+<label>Skills</label>
+<textarea name="skills">{{ profile.skills }}</textarea>
+</div>
+
+<div class="form-group full">
+<label>Education</label>
+<textarea name="education">{{ profile.education }}</textarea>
+</div>
+
+<div class="form-group">
+<label>Update Profile Photo</label>
+<input type="file" name="profile">
+</div>
+
+<div class="form-group">
+<label>Update Resume</label>
+<input type="file" name="resume">
+</div>
+
+<div class="form-group">
+<label>Update Certificate</label>
+<input type="file" name="disability_doc">
+</div>
+
+</div>
+
+<button class="update-btn">Update Profile</button>
+
+</form>
+
+</div>
+</div>
+
+<script>
+function toggleContrast() {
+document.body.classList.toggle("high-contrast");
+}
+
+let currentFontSize = 16;
+
+function increaseFont() {
+currentFontSize += 2;
+document.body.style.fontSize = currentFontSize + "px";
+}
+
+function decreaseFont() {
+if (currentFontSize > 12) {
+currentFontSize -= 2;
+document.body.style.fontSize = currentFontSize + "px";
+}
+}
+</script>
+
+</body>
+</html>

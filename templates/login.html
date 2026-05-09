@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Smart Job Portal</title>
+
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<header>
+    <nav>
+        <a href="{% url 'home' %}">HOME</a>
+        <a href="{% url 'register' %}">Register</a>
+    </nav>
+
+    <div class="accessibility-controls">
+        <button onclick="toggleContrast()">High Contrast</button>
+        <button onclick="increaseFont()">A+</button>
+        <button onclick="decreaseFont()">A-</button>
+    </div>
+</header>
+
+
+<div class="login-box">
+    <h2>Login</h2>
+
+    <!-- Django Form -->
+    <form method="POST">
+        {% csrf_token %}
+
+        <label>Email</label>
+        <input type="email" name="email" placeholder="Enter your email" required>
+
+        <label>Password</label>
+        <input type="password" name="password" placeholder="Enter your password" required>
+
+        <div class="role">
+            <label>
+                <input type="radio" name="role" value="candidate" required> Candidate
+            </label>
+
+            <label>
+                <input type="radio" name="role" value="employer"> Employer
+            </label>
+
+            <label>
+                <input type="radio" name="role" value="admin"> Admin
+            </label>
+        </div>
+
+        <button type="submit">Login</button>
+    </form>
+
+    <div class="extra">
+        Forgot Password? |
+        <a href="{% url 'register' %}">Register</a>
+    </div>
+
+</div>
+
+
+<script>
+
+function toggleContrast() {
+    document.body.classList.toggle("high-contrast");
+}
+
+let currentFontSize = 16;
+
+function increaseFont() {
+    currentFontSize += 2;
+    document.body.style.fontSize = currentFontSize + "px";
+}
+
+function decreaseFont() {
+    if (currentFontSize > 12) {
+        currentFontSize -= 2;
+        document.body.style.fontSize = currentFontSize + "px";
+    }
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Job Details | Smart Job Portal</title>
+
+<link rel="stylesheet" href="{% static 'css/jobb_details.css' %}">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<header>
+<div class="logo">♿ Smart Job Portal</div>
+
+<div class="accessibility-controls">
+<button onclick="toggleContrast()">High Contrast</button>
+<button onclick="increaseFont()">A+</button>
+<button onclick="decreaseFont()">A-</button>
+</div>
+</header>
+
+<div class="container">
+<div class="job-box">
+
+<div class="badge">
+{{ job.job_type }} Job
+</div>
+
+<div class="job-title">
+{{ job.title }}
+</div>
+
+<div class="meta">
+Department: {{ job.department }}
+</div>
+
+<div class="meta">
+Location: {{ job.location }}
+</div>
+
+<div class="meta">
+Last Date: {{ job.last_date }}
+</div>
+
+<!-- ================= DESCRIPTION ================= -->
+<div class="section">
+<h3>Job Description</h3>
+<p>{{ job.description }}</p>
+</div>
+
+<!-- ================= SKILLS ================= -->
+<div class="section">
+<h3>Required Skills</h3>
+<p>{{ job.skills }}</p>
+</div>
+
+<!-- ================= DISABILITY INFO ================= -->
+<div class="reservation-box">
+<strong>Eligibility Criteria:</strong><br>
+Minimum Disability Required: {{ job.disability_percent }}% <br>
+Eligible Types: {{ job.disability_type }}
+</div>
+
+<!-- ================= BENEFITS (FIXED 🔥) ================= -->
+<div class="section">
+<h3>Benefits for Disabled Candidates</h3>
+
+{% if benefits_list %}
+<ul class="benefits-list">
+    {% for b in benefits_list %}
+        {% if b %}
+            <li>✔ {{ b }}</li>
+        {% endif %}
+    {% endfor %}
+</ul>
+{% else %}
+<p>No special benefits mentioned</p>
+{% endif %}
+
+</div>
+
+<!-- ================= APPLY ================= -->
+<form method="POST" action="{% url 'apply_job' job.id %}">
+{% csrf_token %}
+
+{% if error %}
+<p style="color:red; font-weight:600;">
+    {{ error }}
+</p>
+{% endif %}
+
+{% if not profile %}
+    <p style="color:red;">Please login as candidate to apply</p>
+{% elif disability_ok %}
+    <button class="apply-btn">Apply Now</button>
+{% else %}
+    <p style="color:orange;">
+    This job is only for candidates with less than 50% disability
+    </p>
+{% endif %}
+
+</form>
+
+</div>
+</div>
+
+<!-- ================= STYLE ================= -->
+<style>
+.benefits-list {
+    list-style: none;
+    padding: 0;
+}
+
+.benefits-list li {
+    background: #f1f5f9;
+    margin: 6px 0;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+</style>
+
+<!-- ================= JS ================= -->
+<script>
+
+function toggleContrast(){
+document.body.classList.toggle("high-contrast");
+}
+
+let currentFontSize=16;
+
+function increaseFont(){
+currentFontSize+=2;
+document.body.style.fontSize=currentFontSize+"px";
+}
+
+function decreaseFont(){
+if(currentFontSize>12){
+currentFontSize-=2;
+document.body.style.fontSize=currentFontSize+"px";
+}
+}
+
+</script>
+
+</body>
+</html>

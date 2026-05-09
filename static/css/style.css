@@ -1,0 +1,303 @@
+/* =========================
+   GLOBAL
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f4f7fc;
+}
+
+/* =========================
+   HEADER
+========================= */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 8%;
+    background: white;
+    color: rgb(37, 18, 209);
+    position: relative;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+/* NAV LINKS */
+.nav-links a {
+    text-decoration: none;
+    color: rgb(19, 16, 16);
+    margin-left: 25px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #401dd8;
+}
+
+/* =========================
+   DROPDOWN MENU
+========================= */
+.menu-container {
+    position: relative;
+    margin-left: 20px;
+}
+
+.hamburger {
+    font-size: 26px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.dropdown-menu {
+    position: absolute;
+    right: 0;
+    top: 40px;
+    background: white;
+    min-width: 220px;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    display: none;
+    padding: 10px 0;
+    z-index: 1000;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #333;
+    transition: 0.3s;
+}
+
+.dropdown-menu a:hover {
+    background: #f2f2f2;
+}
+
+/* =========================
+   ACCESSIBILITY BUTTONS
+========================= */
+.accessibility-controls {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 15px;
+}
+
+.accessibility-controls button {
+    margin: 5px 0;
+    padding: 6px 8px;
+    border: none;
+    background: #2563eb;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: 0.3s;
+}
+
+.accessibility-controls button:hover {
+    background: #1d4ed8;
+}
+
+/* =========================
+   HERO SECTION
+========================= */
+.hero {
+    text-align: center;
+    padding: 80px 20px;
+    background: linear-gradient(to right, #2563eb, #1d4ed8);
+    color: white;
+}
+
+.hero h1 {
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    font-size: 16px;
+    margin-bottom: 25px;
+}
+
+.btn-primary,
+.btn-secondary {
+    padding: 12px 20px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 5px;
+    transition: 0.3s;
+}
+
+.btn-primary {
+    background: white;
+    color: #2563eb;
+}
+
+.btn-primary:hover {
+    background: #f2f2f2;
+}
+
+.btn-secondary {
+    background: #111827;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #000;
+}
+
+/* =========================
+   JOB SECTION
+========================= */
+.job-section {
+    padding: 60px 8%;
+    text-align: center;
+}
+
+.section-title {
+    margin-bottom: 40px;
+    font-size: 26px;
+}
+
+.cards {
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    width: 300px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h3 {
+    margin-bottom: 10px;
+}
+
+.JBTN{
+    background:#2563eb;
+    color:white;
+    padding:10px 16px;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:14px;
+    transition:0.3s;
+}
+
+.JBTN:hover{
+    background:#1d4ed8;
+}
+/* =========================
+   FEATURES
+========================= */
+.features {
+    background: #eef2ff;
+    padding: 60px 8%;
+    text-align: center;
+}
+
+.feature-grid {
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.feature {
+    background: white;
+    padding: 20px;
+    width: 250px;
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+    transition: 0.3s;
+}
+
+.feature:hover {
+    transform: translateY(-5px);
+}
+
+/* =========================
+   FOOTER
+========================= */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #1f2937;
+    color: white;
+}
+
+/* =========================
+   HIGH CONTRAST MODE
+========================= */
+.high-contrast {
+    background: black !important;
+    color: yellow !important;
+}
+
+.high-contrast header,
+.high-contrast footer {
+    background: black !important;
+}
+
+.high-contrast a {
+    color: cyan !important;
+}
+
+.high-contrast .card,
+.high-contrast .feature {
+    background: #111 !important;
+    color: yellow !important;
+    box-shadow: none;
+}
+
+.high-contrast .dropdown-menu {
+    background: black !important;
+}
+
+.high-contrast .dropdown-menu a {
+    color: yellow !important;
+}
+
+.high-contrast button {
+    background: yellow !important;
+    color: black !important;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+
+    .hero h1 {
+        font-size: 26px;
+    }
+
+    .cards,
+    .feature-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+}

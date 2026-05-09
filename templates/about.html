@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>About Us | D-Portal</title>
+
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<header>
+
+<h2>♿ D-Portal</h2>
+
+<nav>
+
+<a href="{% url 'home' %}">HOME</a>
+
+<a href="{% url 'contact' %}">Contact Us</a>
+
+</nav>
+
+<div class="accessibility-controls">
+
+<button onclick="toggleContrast()">High Contrast</button>
+
+<button onclick="increaseFont()">A+</button>
+
+<button onclick="decreaseFont()">A-</button>
+
+</div>
+
+</header>
+
+
+<section class="about-container">
+
+<div class="about-hero">
+
+<h1>Building Inclusive Careers for Every Ability</h1>
+
+<p>
+
+Smart Job Portal is an inclusive employment platform designed to empower
+differently-abled individuals with equal career opportunities.
+
+</p>
+
+</div>
+
+
+<div class="about-grid">
+
+<div class="about-card">
+
+<h3>🎯 Our Mission</h3>
+
+<p>
+
+To bridge the gap between talent and opportunity by providing
+disability-friendly hiring solutions across Government and Private sectors.
+
+</p>
+
+</div>
+
+
+<div class="about-card">
+
+<h3>🚀 Smart Technology</h3>
+
+<p>
+
+Our system recommends jobs based on disability type, percentage,
+skills, and eligibility criteria for better placement outcomes.
+
+</p>
+
+</div>
+
+
+<div class="about-card">
+
+<h3>🏛 Reservation Support</h3>
+
+<p>
+
+We simplify government reservation rules and eligibility checks
+for PWD candidates.
+
+</p>
+
+</div>
+
+
+<div class="about-card">
+
+<h3>♿ Accessibility First</h3>
+
+<p>
+
+High contrast mode, large fonts, clean layout, and easy navigation
+ensure equal digital access for all.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<footer>
+
+<p>© 2026 D-Portal | Inclusive Careers for Disabled Candidates.</p>
+
+</footer>
+
+
+
+<script>
+
+function toggleContrast() {
+
+document.body.classList.toggle("high-contrast");
+
+}
+
+let currentFontSize = 16;
+
+function increaseFont() {
+
+currentFontSize += 2;
+
+document.body.style.fontSize = currentFontSize + "px";
+
+}
+
+function decreaseFont() {
+
+if (currentFontSize > 12) {
+
+currentFontSize -= 2;
+
+document.body.style.fontSize = currentFontSize + "px";
+
+}
+
+}
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,223 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Body */
+body {
+    background: #f4f7fc;
+    min-height: 100vh;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 8%;
+    background: white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.logo {
+    font-weight: 700;
+    font-size: 18px;
+    color: #4f46e5;
+}
+
+nav a {
+    text-decoration: none;
+    margin: 0 10px;
+    color: #4f46e5;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #6d28d9;
+}
+
+/* Accessibility */
+.accessibility-controls button {
+    margin-left: 6px;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 6px;
+    background: #4f46e5;
+    color: white;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.accessibility-controls button:hover {
+    background: #6d28d9;
+}
+
+/* Page Heading */
+h1 {
+    text-align: center;
+    margin: 40px 0 20px;
+    color: #4f46e5;
+}
+
+/* Top Search Bar */
+.top-bar {
+    width: 90%;
+    margin: auto;
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.top-bar input,
+.top-bar select {
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.top-bar input {
+    flex: 1;
+    min-width: 220px;
+}
+
+.top-bar select {
+    min-width: 150px;
+}
+
+.top-bar input:focus,
+.top-bar select:focus {
+    border-color: #4f46e5;
+    outline: none;
+}
+
+.top-bar button {
+    padding: 8px 18px;
+    border: none;
+    border-radius: 6px;
+    background: #4f46e5;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.top-bar button:hover {
+    background: #6d28d9;
+}
+
+/* Job Cards Section */
+.jobs {
+    width: 90%;
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+}
+
+/* Card */
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+    position: relative;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+}
+
+.card h3 {
+    margin-bottom: 10px;
+    color: #4f46e5;
+}
+
+.card p {
+    font-size: 14px;
+    margin-bottom: 6px;
+    color: #555;
+}
+
+/* Badges */
+.badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 4px 10px;
+    font-size: 11px;
+    border-radius: 20px;
+    color: white;
+}
+
+/* Badge Types */
+.gov {
+    background: #10b981; /* Green */
+}
+
+.private {
+    background: #f59e0b; /* Orange */
+}
+
+.reserved {
+    top: 45px;
+    background: #ef4444; /* Red */
+}
+
+/* Apply Button */
+.apply-btn {
+    margin-top: 12px;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 8px;
+    background: #4f46e5;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.apply-btn:hover {
+    background: #6d28d9;
+}
+
+/* High Contrast Mode */
+.high-contrast {
+    background: black !important;
+    color: yellow !important;
+}
+
+.high-contrast header,
+.high-contrast .top-bar,
+.high-contrast .card {
+    background: black;
+    border: 2px solid yellow;
+}
+
+.high-contrast input,
+.high-contrast select {
+    background: black;
+    color: yellow;
+    border: 1px solid yellow;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    header {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    nav {
+        margin-top: 10px;
+    }
+}

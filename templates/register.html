@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Register | Smart Job Portal</title>
+
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<header>
+<nav>
+<a href="{% url 'home' %}">HOME</a>
+<a href="{% url 'login' %}">Login</a>
+</nav>
+
+<div class="accessibility-controls">
+<button onclick="toggleContrast()">High Contrast</button>
+<button onclick="increaseFont()">A+</button>
+<button onclick="decreaseFont()">A-</button>
+</div>
+
+</header>
+
+<div class="container">
+
+<h2>Create Account</h2>
+
+<div class="tabs">
+<div class="tab active" onclick="showForm('candidate')">Candidate</div>
+<div class="tab" onclick="showForm('employer')">Employer</div>
+</div>
+
+<!-- Candidate Form -->
+
+<form id="candidate" class="active" method="POST" action="{% url 'register' %}" enctype="multipart/form-data">
+{% csrf_token %}
+
+<input type="hidden" name="user_type" value="candidate">
+
+<label>Full Name</label>
+<input type="text" name="name" required>
+
+<label>Email</label>
+<input type="email" name="email" required>
+
+<label>Phone</label>
+<input type="tel" name="phone" required>
+
+<label>Disability Type</label>
+<select name="disability_type" required>
+<option value="">Select</option>
+<option value="locomotor">Locomotor</option>
+<option value="Physical">Physical</option>
+<option value="visual">Visual</option>
+<option value="hearing">Hearing</option>
+<option value="multiple">Multiple</option>
+</select>
+
+<label>Disability %</label>
+<input type="number" name="disability_percentage" placeholder="Enter percentage" required>
+
+<label>Skills</label>
+<input type="text" name="skills" placeholder="e.g. MS Office, Python" required>
+
+<label>Education</label>
+<input type="text" name="education" required>
+
+<label>Upload Profile Photo</label>
+<input type="file" name="profile" required>
+
+<label>Upload Disability Document</label>
+<input type="file" name="disability_doc" required>
+
+<label>Upload Resume</label>
+<input type="file" name="resume" required>
+
+<label>Password</label>
+<input type="password" name="password" required>
+
+<button type="submit">Register as Candidate</button>
+
+</form>
+
+
+<!-- Employer Form -->
+
+<form id="employer" method="POST" action="{% url 'register' %}">
+{% csrf_token %}
+
+<input type="hidden" name="user_type" value="employer">
+
+<label>Company Name</label>
+<input type="text" name="company_name" required>
+
+<label>Email</label>
+<input type="email" name="email" required>
+
+<label>Industry</label>
+<input type="text" name="industry">
+
+<label>Company Description</label>
+<textarea name="description" rows="3" required></textarea>
+
+<label>Password</label>
+<input type="password" name="password" required>
+
+<button type="submit">Register as Employer</button>
+
+</form>
+
+</div>
+
+
+<script>
+
+function showForm(type) {
+
+document.querySelectorAll('form').forEach(form => {
+
+form.classList.remove('active');
+
+});
+
+document.querySelectorAll('.tab').forEach(tab => {
+
+tab.classList.remove('active');
+
+});
+
+document.getElementById(type).classList.add('active');
+
+event.target.classList.add('active');
+
+}
+
+
+function toggleContrast() {
+
+document.body.classList.toggle("high-contrast");
+
+}
+
+let currentFontSize = 16;
+
+function increaseFont() {
+
+currentFontSize += 2;
+
+document.body.style.fontSize = currentFontSize + "px";
+
+}
+
+function decreaseFont() {
+
+if (currentFontSize > 12) {
+
+currentFontSize -= 2;
+
+document.body.style.fontSize = currentFontSize + "px";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>

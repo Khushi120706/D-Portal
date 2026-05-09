@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Camera Verification</title>
+<link rel="stylesheet" href="{% static "css/c_verification.css" %}">
+</head>
+
+<body>
+
+<h2>📷 Camera Verification</h2>
+
+<video id="video" width="300" autoplay></video>
+<br>
+<button onclick="capture()">Capture</button>
+
+<form method="POST" action="{% url 'camera_verify' application.id %}">
+{% csrf_token %}
+<input type="hidden" name="image" id="imageInput">
+<button type="submit">Submit Verification</button>
+</form>
+
+<canvas id="canvas" style="display:none;"></canvas>
+
+<script>
+const video = document.getElementById('video');
+
+navigator.mediaDevices.getUserMedia({ video: true })
+.then(stream => {
+    video.srcObject = stream;
+});
+
+function capture() {
+    const canvas = document.getElementById('canvas');
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(video, 0, 0);
+
+    const data = canvas.toDataURL('image/png');
+    document.getElementById('imageInput').value = data;
+
+    alert("Captured!");
+}
+</script>
+
+</body>
+</html>
